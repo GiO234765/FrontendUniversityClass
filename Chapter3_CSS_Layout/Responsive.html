@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Chapter 3 practice page: a responsive layout built with CSS Grid, Flexbox and media queries."
+    />
+    <title>Responsive Layout &mdash; Chapter 3 CSS Layout</title>
+    <link rel="stylesheet" href="responsive.css" />
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    <!-- ============ HEADER (flexbox) ============ -->
+    <header class="site-header">
+      <div class="container site-header__inner">
+        <a class="brand" href="#top">
+          <span class="brand__mark" aria-hidden="true">CSS</span>
+          <span class="brand__text">
+            <strong>Frontend University</strong>
+            <small>Chapter 3 &middot; Layout</small>
+          </span>
+        </a>
+
+        <nav aria-label="Main navigation">
+          <ul class="site-nav__list">
+            <li><a href="#top">Overview</a></li>
+            <li><a href="#grid">Grid</a></li>
+            <li><a href="#flex">Flexbox</a></li>
+            <li><a href="#responsive">Responsive</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <!-- ============ HERO (grid: 2 columns -> 1 column) ============ -->
+      <section class="hero" id="top">
+        <div class="container hero__grid">
+          <div>
+            <p class="eyebrow">Responsive Web Design</p>
+            <h1>Layouts that adapt to every screen</h1>
+            <p class="hero__lead">
+              This page is a single exercise file. It uses <strong>CSS Grid</strong> for
+              page-level structure, <strong>Flexbox</strong> for component internals and
+              <strong>media queries</strong> for breakpoints &mdash; resize the window to
+              watch every section rearrange itself.
+            </p>
+            <div class="hero__actions">
+              <a class="btn btn--primary" href="#grid">Explore the grid</a>
+              <a class="btn btn--ghost" href="#responsive">See breakpoints</a>
+            </div>
+          </div>
+
+          <figure class="hero__card">
+            <figcaption class="hero__card-title">Breakpoints in this page</figcaption>
+            <ul class="badge-list">
+              <li class="badge">base &mdash; 1 column</li>
+              <li class="badge">&ge; 40rem &mdash; 2 columns</li>
+              <li class="badge">&ge; 64rem &mdash; 4 columns</li>
+            </ul>
+            <p class="hero__note">
+              Nothing is hidden at small widths; content only re-flows.
+            </p>
+          </figure>
+        </div>
+      </section>
+
+      <!-- ============ STATS (auto-fit grid) ============ -->
+      <section class="stats" aria-label="Layout techniques used">
+        <div class="container">
+          <ul class="stats__grid">
+            <li class="stats__item">
+              <span class="stats__value">1</span>
+              <span class="stats__label">HTML file</span>
+            </li>
+            <li class="stats__item">
+              <span class="stats__value">3</span>
+              <span class="stats__label">Grid templates</span>
+            </li>
+            <li class="stats__item">
+              <span class="stats__value">5</span>
+              <span class="stats__label">Flex containers</span>
+            </li>
+            <li class="stats__item">
+              <span class="stats__value">0</span>
+              <span class="stats__label">Inline widths</span>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ============ GRID SECTION ============ -->
+      <section class="section" id="grid">
+        <div class="container">
+          <header class="section__header">
+            <h2>Built with CSS Grid</h2>
+            <p>
+              <code>grid-template-columns</code> and <code>auto-fit</code> with
+              <code>minmax()</code> let a single rule replace per-breakpoint column counts.
+            </p>
+          </header>
+
+          <ul class="card-grid">
+            <li class="card">
+              <h3 class="card__title">auto-fit + minmax</h3>
+              <p>
+                Columns collapse on their own when the container gets narrower, so the card
+                grid needs no extra media queries.
+              </p>
+            </li>
+            <li class="card">
+              <h3 class="card__title">Named areas</h3>
+              <p>
+                The hero uses a two column track named <code>content</code> and
+                <code>card</code>, re-stacked to one row on narrow screens.
+              </p>
+            </li>
+            <li class="card">
+              <h3 class="card__title">Fluid type</h3>
+              <p>
+                Headings use <code>clamp()</code> to scale smoothly between a mobile and a
+                desktop size with no jump.
+              </p>
+            </li>
+            <li class="card">
+              <h3 class="card__title">Semantic markup</h3>
+              <p>
+                Landmarks (<code>header</code>, <code>nav</code>, <code>main</code>,
+                <code>section</code>, <code>footer</code>) do the accessibility work that
+                layout classes cannot.
+              </p>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ============ FLEX SECTION ============ -->
+      <section class="section section--alt" id="flex">
+        <div class="container">
+          <header class="section__header">
+            <h2>Built with Flexbox</h2>
+            <p>
+              Flexbox handles one dimension at a time &mdash; perfect for rows of buttons,
+              cards and card footers that need to wrap.
+            </p>
+          </header>
+
+          <div class="split">
+            <article class="split__main">
+              <h3>Toolbar that wraps</h3>
+              <div class="toolbar" role="group" aria-label="Example toolbar">
+                <button class="btn btn--primary" type="button">Save</button>
+                <button class="btn" type="button">Duplicate</button>
+                <button class="btn" type="button">Export</button>
+                <button class="btn btn--ghost" type="button">Delete</button>
+              </div>
+              <p class="split__text">
+                <code>flex-wrap: wrap</code> plus <code>gap</code> keeps spacing even when the
+                buttons no longer fit on one line.
+              </p>
+            </article>
+
+            <aside class="split__aside">
+              <h3>Card footer</h3>
+              <div class="media-card">
+                <div class="media-card__thumb" aria-hidden="true">01</div>
+                <div class="media-card__body">
+                  <h4 class="media-card__title">Side bar</h4>
+                  <p class="media-card__meta">
+                    <span>Flex column</span>
+                    <span class="media-card__tag">sticky</span>
+                  </p>
+                </div>
+              </div>
+              <p class="split__text">
+                <code>margin-inline-start: auto</code> pushes the last item to the far edge
+                of a flex row.
+              </p>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ RESPONSIVE SECTION ============ -->
+      <section class="section" id="responsive">
+        <div class="container">
+          <header class="section__header">
+            <h2>Breakpoint reference</h2>
+            <p>
+              Mobile first: each rule only <em>adds</em> layout as the viewport grows, which
+              keeps the base CSS small.
+            </p>
+          </header>
+
+          <div class="table-wrap">
+            <table class="breakpoints">
+              <thead>
+                <tr>
+                  <th scope="col">Min width</th>
+                  <th scope="col">Applies to</th>
+                  <th scope="col">Effect</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>base</td>
+                  <td>mobile</td>
+                  <td>single column, stacked nav, 1rem gutter</td>
+                </tr>
+                <tr>
+                  <td>&ge; 40rem</td>
+                  <td>tablet</td>
+                  <td>2 column hero, 2 column cards, larger gutter</td>
+                </tr>
+                <tr>
+                  <td>&ge; 48rem</td>
+                  <td>laptop</td>
+                  <td>sidebar sits beside the main content</td>
+                </tr>
+                <tr>
+                  <td>&ge; 64rem</td>
+                  <td>desktop</td>
+                  <td>4 column cards, horizontal nav spacing</td>
+                </tr>
+                <tr>
+                  <td>&ge; 80rem</td>
+                  <td>wide</td>
+                  <td>container capped and centred</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="site-footer">
+      <div class="container site-footer__inner">
+        <p class="site-footer__copy">
+          Chapter 3 &middot; CSS Layout &mdash; <code>Grid</code> + <code>Flexbox</code> +
+          media queries
+        </p>
+        <ul class="site-footer__links">
+          <li><a href="#top">Back to top</a></li>
+        </ul>
+      </div>
+    </footer>
+  </body>
+</html>
